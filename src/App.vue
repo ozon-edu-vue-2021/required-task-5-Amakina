@@ -1,14 +1,23 @@
 <template>
   <div id="app">
+    <TheHeader />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader.vue";
+import { moduleName, actionTypes } from "./store/modules/products";
 
 export default {
   name: "App",
   components: {
-    Form,
+    TheHeader,
+  },
+  async created() {
+    await this.$store.dispatch(
+      `${moduleName}/${actionTypes.ACTION_FETCH_PRODUCTS}`
+    );
   },
 };
 </script>
