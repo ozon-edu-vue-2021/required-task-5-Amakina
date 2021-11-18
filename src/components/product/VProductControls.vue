@@ -65,28 +65,21 @@ export default {
     quantity() {
       this.$store.commit(
         `${moduleName}/${mutationTypes.MUTATION_CHANGE_QUANTITY}`,
-        this.getItem()
+        { id: this.product.id, quantity: this.quantity }
       );
     },
   },
   methods: {
-    getItem() {
-      return {
-        product: this.product,
-        quantity: this.quantity,
-      };
-    },
     addToCart() {
-      const item = this.getItem();
       this.$store.commit(
         `${moduleName}/${mutationTypes.MUTATION_ADD_TO_CART}`,
-        item
+        { product: this.product, quantity: this.quantity }
       );
     },
     removeFromCart() {
       this.$store.commit(
         `${moduleName}/${mutationTypes.MUTATION_REMOVE_FROM_CART}`,
-        this.product
+        this.product.id
       );
     },
     decrease() {

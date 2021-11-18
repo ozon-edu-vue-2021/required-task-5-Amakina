@@ -1,16 +1,13 @@
 <template>
-  <img
-    class="product__image"
-    :src="require(`../../assets/images/${product.image}`)"
-  />
+  <img class="product__image" :src="require(`../../assets/images/${image}`)" />
 </template>
 
 <script>
 export default {
   props: {
-    product: {
-      type: Object,
-      default: () => ({}),
+    image: {
+      type: String,
+      required: true,
     },
   },
 };

@@ -1,16 +1,20 @@
 <template>
   <div class="product__info">
-    <div class="product__info-name">{{ product.dish }}</div>
-    <div class="product__info-price">${{ product.price }}</div>
+    <div class="product__info-name">{{ dish }}</div>
+    <div class="product__info-price">${{ price.toFixed(2) }}</div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    product: {
-      type: Object,
-      default: () => ({}),
+    dish: {
+      type: String,
+      default: "",
+    },
+    price: {
+      type: Number,
+      default: 0,
     },
   },
 };

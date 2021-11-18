@@ -30,19 +30,18 @@ const mutations = {
   [mutationTypes.MUTATION_SET_PRODUCTS](state, products) {
     state.products = products.map((product) => ({
       ...product,
-      price: (Math.random() * 10).toFixed(2),
+      price: Math.random() * 10,
       image: images[Math.floor(Math.random() * images.length)],
       favourite: false,
     }));
   },
-  [mutationTypes.MUTATION_TOGGLE_FAVOURITE](state, favouriteProduct) {
-    const product = state.products.find(
-      (product) => product.id === favouriteProduct.id
-    );
-
-    if (!product) return;
-
-    product.favourite = !product.favourite;
+  [mutationTypes.MUTATION_TOGGLE_FAVOURITE](state, id) {
+    state.products = state.products.map((product) => {
+      if (product.id === id) {
+        product.favourite = !product.favourite;
+      }
+      return product;
+    });
   },
 };
 

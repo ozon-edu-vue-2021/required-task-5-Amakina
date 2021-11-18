@@ -10,25 +10,20 @@ import { moduleName, mutationTypes } from "../../store/modules/products";
 
 export default {
   props: {
-    product: {
-      type: Object,
-      default: () => ({}),
+    isFavourite: {
+      type: Boolean,
+      required: true,
     },
-  },
-  data() {
-    return {
-      isFavourite: false,
-    };
-  },
-  created() {
-    this.isFavourite = this.product.favourite;
+    productId: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
     toggleFavourite() {
-      this.isFavourite = !this.isFavourite;
       this.$store.commit(
         `${moduleName}/${mutationTypes.MUTATION_TOGGLE_FAVOURITE}`,
-        this.product
+        this.productId
       );
     },
   },

@@ -1,14 +1,26 @@
 <template>
   <header class="header">
-    <RouterLink class="header__link" to="/">Products</RouterLink>
-    <RouterLink class="header__link" to="/cart">Cart</RouterLink>
-    <RouterLink class="header__link" to="/faves">Favourites</RouterLink>
+    <RouterLink
+      class="header__link"
+      v-for="route in routes"
+      :key="route.path"
+      :to="route.path"
+    >
+      {{ route.name }}
+    </RouterLink>
   </header>
 </template>
 
 <script>
+import routes from "../helpers/routes";
+
 export default {
   name: "TheHeader",
+  computed: {
+    routes() {
+      return routes;
+    },
+  },
 };
 </script>
 

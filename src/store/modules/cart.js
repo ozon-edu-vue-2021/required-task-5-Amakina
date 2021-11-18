@@ -20,22 +20,16 @@ const mutations = {
   [mutationTypes.MUTATION_ADD_TO_CART](state, { product, quantity }) {
     state.cart.push({ product, quantity });
   },
-  [mutationTypes.MUTATION_REMOVE_FROM_CART](state, item) {
-    state.cart = state.cart.filter(
-      (cartItem) => cartItem.product.id !== item.id
-    );
+  [mutationTypes.MUTATION_REMOVE_FROM_CART](state, id) {
+    state.cart = state.cart.filter((cartItem) => cartItem.product.id !== id);
   },
-  [mutationTypes.MUTATION_CHANGE_QUANTITY](state, { product, quantity }) {
+  [mutationTypes.MUTATION_CHANGE_QUANTITY](state, { id, quantity }) {
     if (quantity === 0) {
-      state.cart = state.cart.filter(
-        (cartItem) => cartItem.product.id !== product.id
-      );
+      state.cart = state.cart.filter((cartItem) => cartItem.product.id !== id);
       return;
     }
 
-    const item = state.cart.find(
-      (cartItem) => cartItem.product.id === product.id
-    );
+    const item = state.cart.find((cartItem) => cartItem.product.id === id);
 
     if (!item) return;
 

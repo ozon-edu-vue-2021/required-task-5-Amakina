@@ -1,8 +1,11 @@
 <template>
   <div class="product" :class="{ product_horizontal: horizontal }">
-    <VProductImage :product="product" />
-    <VProductFavourite :product="product" />
-    <VProductInfo :product="product" />
+    <VProductImage :image="product.image" />
+    <VProductFavourite
+      :isFavourite="product.favourite"
+      :productId="product.id"
+    />
+    <VProductInfo :dish="product.dish" :price="product.price" />
     <VProductControls :product="product" />
   </div>
 </template>
